@@ -1,7 +1,6 @@
 #include "clientQueryHandler.hpp"
 #include "queryProcessor.hpp"
 #include "textUI.hpp"
-#include <sqlite3.h>
 
 int main()
 {
