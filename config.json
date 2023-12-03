@@ -1,0 +1,8 @@
+{
+    "srcURL": ["https://harrypotter.fandom.com/wiki/Harry_Potter", "https://godzilla.fandom.com/wiki/Main_Page"], 
+    "maxPages": 100,
+    "bounded": false,
+    "serverAddress" : "127.0.0.1",
+    "portNum" : 8080,
+    "maxThreads" : 25
+}
