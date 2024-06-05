@@ -7,11 +7,19 @@ CXXFLAGS += -Werror
 CXXFLAGS += -Wextra
 CXXFLAGS += -g3
 
-CPPFLAGS = -I ./includes -I ./includes/crawler -I ./includes/parsers -I ./includes/queryHandler -I ./includes/safeDataStructures -I ./src -I ./src/crawler -I ./src/parsers -I ./src/queryHandler -I ./src/safeDataStructures
+CPPFLAGS = -I ./includes -I ./includes/crawler -I ./includes/parsers -I ./includes/queryHandler -I ./includes/safeDataStructures -I ./src -I ./src/crawler -I ./src/parsers -I ./src/queryHandler -I ./src/safeDataStructures -I ./sqlFiles
 
 LDLIBS += -lcurlpp -lcurl -lgumbo
+LDLIBS += -lsqlite3
 
 OBJECTS = mainServer.o src/configuration.o src/tools.o src/request.o\
+		src/parsers/linkParser.o src/parsers/wordParser.o src/parsers/linkWordParser.o src/matabase.o src/pageRank.o src/getHTTP.o\
+		src/pageFetcher.o src/crawler/crawlerQueue.o src/crawler/safeCrawlerQueueHandler.o src/crawler/crawler.o src/systemMonitor.o src/basePage.o\
+		src/analyzPage.o src/result.o src/queryBuilderFactory.o src/textUI.o src/queryHandler/multiQueryHandler.o\
+		src/queryHandler/simpleQueryHandler.o src/queryHandler/smartQueryHandler.o src/queryProcessor.o src/TCPquery.o\
+		src/TCPsocketFile.o src/TCPserver.o
+
+OBJECTS_SQLITE = mainServerSqlite.o sqlFiles/sqlDataBase.o sqlFiles/sqliteAPI.o src/configuration.o src/tools.o src/request.o\
 		src/parsers/linkParser.o src/parsers/wordParser.o src/parsers/linkWordParser.o src/matabase.o src/pageRank.o src/getHTTP.o\
 		src/pageFetcher.o src/crawler/crawlerQueue.o src/crawler/safeCrawlerQueueHandler.o src/crawler/crawler.o src/systemMonitor.o src/basePage.o\
 		src/analyzPage.o src/result.o src/queryBuilderFactory.o src/textUI.o src/queryHandler/multiQueryHandler.o\
@@ -22,14 +30,16 @@ OBJECTS_CLIENT = mainClient.o src/queryHandler/clientQueryHandler.o src/textUI.o
 	src/result.o src/queryProcessor.o src/request.o\
 	src/tools.o src/TCPsocketFile.o src/TCPclient.o
 
-RUNFILES = mainServer mainClient
+RUNFILES = mainServer mainClient mainServerSqlite
 
 all : $(RUNFILES)
 
 mainServer : $(OBJECTS)
+mainServerSqlite : $(OBJECTS_SQLITE)
 mainClient : $(OBJECTS_CLIENT)
 
 mainServer.o : mainServer.cpp includes/matabase.hpp includes/crawler/crawler.hpp includes/queryHandler/smartQueryHandler.hpp includes/queryProcessor.hpp
+mainServerSqlite.o : mainServerSqlite.cpp sqlFiles/sqliteAPI.hpp sqlFiles/sqlDataBase.hpp includes/crawler/crawler.hpp includes/queryHandler/smartQueryHandler.hpp includes/queryProcessor.hpp
 mainClient.o : mainClient.cpp includes/queryHandler/clientQueryHandler.hpp includes/queryProcessor.hpp includes/textUI.hpp
 
 src/request.o : src/request.cpp includes/request.hpp includes/requestIF.hpp includes/tools.hpp
@@ -89,5 +99,9 @@ src/TCPclient.o : includes/TCPclient.hpp src/TCPclient.cpp includes/TCPsocketFil
 src/TCPquery.o : includes/TCPquery.hpp src/TCPquery.cpp includes/TCPsocketFile.hpp includes/TCPserver.hpp\
 	includes/queryBuilderIF.hpp includes/myExceptions.hpp includes/tools.hpp
 
+
+sqlFiles/sqlDataBase.o : sqlFiles/sqlDataBase.cpp sqlFiles/sqlDataBase.hpp sqlFiles/sqliteAPI.hpp
+sqlFiles/sqliteAPI.o : sqlFiles/sqliteAPI.cpp sqlFiles/sqliteAPI.hpp
+
 clean :
-	$(RM) $(RUNFILES) $(OBJECTS) $(OBJECTS_CLIENT)
+	$(RM) $(RUNFILES) $(OBJECTS) $(OBJECTS_CLIENT) mainServerSqlite.o sqlFiles/sqlDataBase.o sqlFiles/sqliteAPI.o

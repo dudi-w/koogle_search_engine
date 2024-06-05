@@ -1,8 +1,8 @@
 {
-    "srcURL": ["https://harrypotter.fandom.com/wiki/Harry_Potter", "https://godzilla.fandom.com/wiki/Main_Page"], 
-    "maxPages": 100,
+    "srcURL": ["https://en.wikipedia.org/wiki/Selenium" , "https://harrypotter.fandom.com/wiki/Harry_Potter", "https://godzilla.fandom.com/wiki/Main_Page"], 
+    "maxPages": 1,
     "bounded": false,
     "serverAddress" : "127.0.0.1",
     "portNum" : 8080,
-    "maxThreads" : 25
+    "maxThreads" : 5
 }
