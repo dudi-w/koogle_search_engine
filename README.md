@@ -76,7 +76,7 @@ make -j4
 ```sh
 ./mainServer
 ```
-To use the client interface type `e` and `Enter`
+To use the client interface type `e` and `Enter`\
 or type `c` to use the same local terminal
 if you decided to use client interface run the following command in secound terminal
 
