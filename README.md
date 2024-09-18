@@ -1,4 +1,4 @@
-![](project-logo.jpeg)
+![](sources/koogle_logo.jpglogo.jpg)
 
 ![Static Badge](https://img.shields.io/badge/Solution-C++17-blue.svg?style=flat&logo=c%2B%2B&logoColor=b0c0c0&labelColor=363D44)    [![Static Badge](https://img.shields.io/badge/MakeFile-passing-green??style=flat&logo=make&logoColor=0da636&labelColor=363D44)](https://www.gnu.org/software/make/manual/make.html)   ![Static Badge](https://img.shields.io/badge/OS-linux-orange??style=flat&logo=Linux&logoColor=b0c0c8&labelColor=363D44)
 
@@ -22,7 +22,7 @@ The `Search_engine` class is the application responsible for handling user queri
 
 ## UML Class Diagram
 
-![](uml_project.png)
+![](sources/search_engin_uml_diagram.jpg)
 
 ## Design Patterns
 
@@ -77,7 +77,7 @@ make -j4
 ./mainServer
 ```
 To use the client interface type `e` and `Enter`\
-or type `c` to use the same local terminal
+or type `c` to use the same local terminal\
 if you decided to use client interface run the following command in secound terminal
 
 ```sh
