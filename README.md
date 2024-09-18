@@ -61,8 +61,8 @@ sudo apt install -y libcurlpp-dev
 - Clone the repository
 
 ```sh
-git clone https://github.com/
-cd 
+git clone https://github.com/dudi-w/koogle_search_engine
+cd koogle_search_engine
 ```
 
 - Compile the files
